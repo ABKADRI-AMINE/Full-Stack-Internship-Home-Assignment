@@ -1,13 +1,29 @@
-import { Inter } from 'next/font/google'
+import React, { useState } from 'react';
+import UploadForm from './UploadForm';
+import EmployeeTable from './EmployeeTable';
+import SecondInterface from './SecondInterface';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const inter = Inter({ subsets: ['latin'] })
+const App = () => {
+  const [uploaded, setUploaded] = useState(false);
+  const [processed, setProcessed] = useState(false);
 
-export default function Home() {
+  const handleUpload = () => {
+    setUploaded(true);
+  };
+
+  const handleProcess = () => {
+    setProcessed(true);
+  };
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+    <div className="container">
+      <h1 className="mt-5">DNA Engineering Full-Stack Assignment</h1>
+      <UploadForm onUpload={handleUpload} />
+      {uploaded && <SecondInterface onProcess={handleProcess} showProcessButton={!processed} />}
+      {processed && <EmployeeTable />}
+    </div>
+  );
+};
+
+export default App;

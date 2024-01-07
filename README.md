@@ -1,62 +1,126 @@
-## DNA Engineering Full-Stack Assignment
-Build a CSV Parser.
+# DNA Engineering Full-Stack Project
 
-## Table of content
-- [Prerequisites](#prerequisites)
-- [Before We begin](#before-we-begin)
-- [Assignment](#assignment)
-- [What we expect](#what-we-expect)
-- [Bonus points](#bonus-points)
+This full-stack application manages and displays employee information(CSV Parser), including job titles, salaries, and job summaries. The project is built with Next.js for the front-end and Spring Boot for the back-end.
 
-## Prerequisites
-- Java 17
-- Node Js v20.10.0
+## Table of Contents
+- [Getting Started](#getting-started)
+  - [Front-end](#front-end)
+  - [Back-end](#back-end)
+- [Front-end - Next.js](#front-end-nextjs)
+- [Back-end - Spring Boot](#back-end-spring-boot)
 
-## Before we begin
-- In this assignment, you will be asked to write, and test your code.
-- Make sure you respect clean code guidelines.
-- Read the assignment carefully.
+## Getting Started
 
-## Description
-You are invited to create a CSV parser using Java/Spring Boot, and build UI to display results using Next.js/React.
+### Front-end
 
-## Assignment
+To run the front-end development server:
 
-### Backend (CSV Parser)
+1. Navigate to the project's root directory in your terminal.
+2. Run one of the following commands:
 
-#### Tasks
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   ```
 
-- Write a service in Java that will read and process the attached CSV(comma separated values) file at `data/employees.csv`.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser to access the application.
 
-- This service should read, extract and process data in a suitable data structure.
+### Back-end
 
-- Process this data to return the list of employees and a summary indicating the average salary for each job title.
+The back-end is developed using Spring Boot. Follow these steps:
 
-### Frontend
+1.Begin by opening the backend directory in your preferred Java Integrated Development Environment (IDE).
 
-#### Tasks
-Implement a simple user interface that will allow the user to upload the file and display the results of your processing.
+2.Ensure that Apache and MySQL are running using XAMPP or another suitable platform.
 
-#### Interfaces
+3.Reload the Maven dependencies for the project.
 
-Respect the following design flow:
+4.Execute the BackendApplication class to initiate the Spring Boot application.
 
-![Frontend interfaces](./static/interfaces.png)
+5.Access the back-end by navigating to http://localhost:8080 in your web browser.
 
-- **Interface-1**: Contain an upload button.
-- **Interface-2**: The Process button is added when you choose a file.
-- **Interface-3**: 2 Tables showing the processing results.
+## Front-end - Next.js
 
-**Table 1**: Employee information, displays a paginated list of employees.
+### Components
 
-**Table 2**: Jobs summary, displays for each job title, the average salary for employees.
+#### `EmployeeTable`
 
-## What we expect
-- Write a concise, easy to understand code.
-- Use good practices.
-- Write unit tests for your java code.
-- Append to this README your approach and provide instructions to run your project.
+- Displays employee information and job summaries.
+- Fetches employee data and average salaries using Axios.
+- Implements pagination for a better user experience.
 
-## Bonus points
-- Implement your own CSV file parser instead of using a library.
-- Use design patterns.
+#### `UploadForm`
+
+- Allows users to upload a CSV file containing employee data.
+- Uses Axios to send the file to the Spring Boot back-end for processing.
+
+#### `SecondInterface`
+
+- Displays a button to initiate data processing.
+- Conditionally renders based on user interactions.
+
+#### `App`
+
+- The main application component managing the overall structure.
+- Uses state to control the flow of the application based on user actions.
+
+## Back-end - Spring Boot
+
+### Controller
+
+#### `EmployeeController`
+
+- Manages RESTful API endpoints for employee-related operations.
+- Endpoints include fetching all employees, calculating average salaries by job title, parsing CSV files, and importing CSV data.
+
+### Service
+
+#### `CsvParserService`
+
+- Parses CSV files, saves data to the database, and calculates average salaries.
+- Uses JPA repository (`EmployeeRepo`) for database operations.
+
+### Entity
+
+#### `Employee`
+
+- Represents an employee with attributes such as ID, name, job title, and salary.
+
+### Repository
+
+#### `EmployeeRepo`
+
+- JPA repository for `Employee` entities.
+
+### Testing
+
+#### `CsvParserServiceTest`
+
+- Unit tests for the `CsvParserService` class.
+
+## Demo
+1.First, we select a CSV file to upload.
+
+![Alt text](image.png)
+
+![Alt text](image-1.png)
+
+2.Next, we click on the "Upload" button.
+
+![Alt text](image-2.png)
+
+3.Once done, the "Process" button appears. Click on it.
+
+![Alt text](image-3.png)
+
+4.The results will then be displayed, illustrated by two arrays: one containing employee information and the other summarizing job details.
+
+![Alt text](image-4.png)
+
+## Conclusion
+
+This project demonstrates a full-stack application using Next.js and Spring Boot. The front-end provides a user-friendly interface for managing employee data(CSV Parser), while the back-end handles data processing and storage. Feel free to explore the codebase for more details on the implementation. Contributions and feedback are welcome!
+
